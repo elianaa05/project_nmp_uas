@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ItemHome"
+        android:icon="@drawable/ic_home"
+        android:title="Home"
+        android:visible="true" />
+    <item
+        android:id="@+id/ItemCreation"
+        android:icon="@drawable/ic_creation"
+        android:title="Creation"
+        android:visible="true" />
+    <item
+        android:id="@+id/ItemLeaderboard"
+        android:icon="@drawable/ic_leaderboard"
+        android:title="Leaderboard"
+        android:visible="true" />
+    <item
+        android:id="@+id/ItemSetting"
+        android:icon="@drawable/ic_setting"
+        android:title="Setting"
+        android:visible="true" />
+</menu>
