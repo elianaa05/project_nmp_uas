@@ -58,15 +58,27 @@ class MainActivity : AppCompatActivity() {
 
 
         navView.setNavigationItemSelectedListener {
-            Toast.makeText( this,
+
                 when(it.itemId) {
-                    R.id.ItemHome -> "Home"
-                    R.id.ItemCreation -> "My Creation"
-                    R.id.ItemLeaderboard -> "Leaderboard"
-                    R.id.ItemSetting -> "Settings"
+                    R.id.ItemHome -> {
+                        viewPager.setCurrentItem(0)
+                        true
+                    }
+                    R.id.ItemCreationDrawer ->{
+                        viewPager.setCurrentItem(1)
+                        true
+                    }
+                    R.id.ItemLeaderboard -> {
+                        viewPager.setCurrentItem(2)
+                        true
+                    }
+                    R.id.ItemSettings -> {
+                        val intent = Intent(this,Settings::class.java)
+                        startActivity(intent)
+                        true
+                    }
                     else -> ""
-                },
-            Toast.LENGTH_SHORT).show()
+                }
             drawerLayout.closeDrawer(GravityCompat.START)
             true
         }

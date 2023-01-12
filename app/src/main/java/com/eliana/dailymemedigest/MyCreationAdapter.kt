@@ -1,6 +1,7 @@
 package com.eliana.dailymemedigest
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,12 @@ class MyCreationAdapter (val CM:ArrayList<Memes>):RecyclerView.Adapter<MyCreatio
             txtAtasCreation.text = CM[position].text_atas
             txtBawahCreation.text = CM[position].text_bawah
             txtLike.text = CM[posisi].jumlah_like.toString()
+
+            cardViewCreation.setOnClickListener {
+                val intent = Intent(context, DetailMeme::class.java)
+                intent.putExtra("id", CM[position].id.toString())
+                context.startActivity(intent)
+            }
         }
         
         

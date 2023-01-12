@@ -38,14 +38,10 @@ class KomentarAdapter (val komentars:ArrayList<Komentar>): RecyclerView.Adapter<
 
         val posisi = position
         with(holder.v){
-            txtUsernameKomentarDetail.text = komentars[position].id_pengguna.toString()
+            txtUsernameKomentarDetail.text = komentars[position].username
             txtTanggalKomentarDetail.text = komentars[position].tanggal_komentar
             txtIsiKomentarDetail.text = komentars[posisi].isi_komentar
 
-            val mm:ArrayList<Memes> = ArrayList()
-            var isi_komentar = txtKirimKomentarDetail.text
-            val sdf = SimpleDateFormat("yyyy/MM/dd")
-            var tanggal = sdf.format(Date())
         }
     }
 

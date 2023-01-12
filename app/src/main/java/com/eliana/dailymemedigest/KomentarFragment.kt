@@ -67,9 +67,10 @@ class KomentarFragment : Fragment() {
                     for(i in 0 until data.length()){
                         val komentarCard = data.getJSONObject(i)
                         val komentar = Komentar(
-                            komentarCard.getInt("id"),
+                            //komentarCard.getInt("id"),
                             komentarCard.getInt("id_meme"),
                             komentarCard.getInt("id_pengguna"),
+                            komentarCard.getString("nama_depan"),
                             komentarCard.getString("isi_komentar"),
                             komentarCard.getString("tanggal_komentar"),
                         )
