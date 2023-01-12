@@ -1,6 +1,5 @@
 package com.eliana.dailymemedigest
 
-
 data class Users(
     var id: Int,
     var username: String,

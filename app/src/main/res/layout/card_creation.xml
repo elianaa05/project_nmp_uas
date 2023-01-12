@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="350dp">
+    android:layout_height="320dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewMeme"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/cardViewCreation"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="10dp"
@@ -23,76 +23,67 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageMemeCard"
+                android:id="@+id/imageCreation"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/txtTextAtasDetail"
+                android:id="@+id/txtAtasCreation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="Text Atas"
+                android:text="TextView"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageMemeCard" />
+                app:layout_constraintEnd_toEndOf="@+id/imageCreation"
+                app:layout_constraintStart_toStartOf="@+id/imageCreation"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txtTextBawahDetail"
+                android:id="@+id/txtBawahCreation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="Text Bawah"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imageMemeCard"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <Button
-                android:id="@+id/btnLikeCard"
-                style="@style/Widget.Material3.Button.IconButton"
-                android:layout_width="42dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
-                android:textAlignment="center"
-                app:icon="@drawable/ic_like"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageMemeCard" />
-
-            <Button
-                android:id="@+id/btnKomentarCard"
-                style="@style/Widget.Material3.Button.IconButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="10dp"
-                app:icon="@drawable/ic_comment"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageMemeCard" />
+                app:layout_constraintBottom_toBottomOf="@+id/imageCreation"
+                app:layout_constraintEnd_toEndOf="@+id/imageCreation"
+                app:layout_constraintStart_toStartOf="@+id/imageCreation" />
 
             <TextView
-                android:id="@+id/txtJumlahLikeCard"
+                android:id="@+id/txtLike"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="22dp"
-                android:text="0 Likes"
-                app:layout_constraintStart_toEndOf="@+id/btnLikeCard"
-                app:layout_constraintTop_toBottomOf="@+id/imageMemeCard" />
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:drawableLeft="@drawable/ic_like"
+                android:text=" 0 Likes"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageCreation" />
+
+            <TextView
+                android:id="@+id/txtKomentarCreation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:drawableRight="@drawable/ic_comment"
+                android:text="0 Komentar "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageCreation" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

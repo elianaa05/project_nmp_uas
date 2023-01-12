@@ -1,6 +1,6 @@
 package com.eliana.dailymemedigest
 
-import android.content.Intent
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -14,7 +14,6 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import kotlinx.android.synthetic.main.card_meme.*
 import org.json.JSONObject
 
 // TODO: Rename parameter arguments, choose names that match
@@ -22,20 +21,19 @@ import org.json.JSONObject
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class MemesFragment : Fragment() {
+class LeaderboardFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
-    val mm:ArrayList<Memes> = ArrayList()
-
-    
+    val lc:ArrayList<LeaderboardClass> = ArrayList()
 
     fun updateList(){
         val lm: LinearLayoutManager = LinearLayoutManager(activity)
-        val rv = view?.findViewById<RecyclerView>(R.id.recyclerViewMeme)
+        val rv = view?.findViewById<RecyclerView>(R.id.recyclerViewLeaderboard)
         rv?.layoutManager = lm
         rv?.setHasFixedSize(true)
-        rv?.adapter = MemesAdapter(mm)
+        rv?.adapter = LeaderboardAdapter(lc)
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,50 +43,39 @@ class MemesFragment : Fragment() {
         }
 
         val q = Volley.newRequestQueue(activity)
-        val url = "https://ubaya.fun/flutter/160719017/nmp/memes.php"
+        val url = "https://ubaya.fun/flutter/160719017/nmp/leaderboard.php"
+        Log.d("url",url)
+
+        var shared = this.activity?.getSharedPreferences("com.eliana.dailymemedigest", Context.MODE_PRIVATE)
+        var nama = shared?.getString("FIRSTNAME", "")
 
         var stringRequest = StringRequest(
             Request.Method.POST,
             url,
             Response.Listener {
-                Log.d("apiresult", it)
+                Log.d("cekleader", it)
                 val obj = JSONObject(it)
                 if(obj.getString("result")=="success"){
                     val data = obj.getJSONArray("data")
                     for(i in 0 until data.length()){
-                        val memesCard = data.getJSONObject(i)
-                        val memes = Memes(
-                            memesCard.getInt("id"),
-                            memesCard.getString("url"),
-                            memesCard.getString("text_atas"),
-                            memesCard.getString("text_bawah"),
-                            memesCard.getString("tanggal"),
-                            memesCard.getInt("id_pembuat"),
-                            memesCard.getInt("jumlah_like")
+                        val lb = data.getJSONObject(i)
+                        val leaderboard = LeaderboardClass(
+                            lb.getInt("id"),
+                            lb.getString("nama"),
+                            lb.getString("jumlah_like"),
+                            lb.getString("link"),
                         )
-                        mm.add(memes)
+                        lc.add(leaderboard)
                     }
-
+                    //Log.d("leaderboardku", lc.toString())
                     updateList()
-
-                    //Log.d("cekisiarrayList", playlists.toString())
                 }
             },
             Response.ErrorListener {
-                Log.wtf("apiresult", it.message.toString())
+                Log.wtf("gagalleaderboard", it.message.toString())
             }
         )
         q.add(stringRequest)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        /*fab?.setOnClickListener {
-            activity?.let {
-                val intent = Intent(it, AddMemeActivity::class.java)
-                it.startActivity(intent)
-            }
-        }*/
     }
 
     override fun onCreateView(
@@ -96,22 +83,12 @@ class MemesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_memes, container, false)
+        return inflater.inflate(R.layout.fragment_leaderboard, container, false)
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MemesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            MemesFragment().apply {
+            LeaderboardFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
