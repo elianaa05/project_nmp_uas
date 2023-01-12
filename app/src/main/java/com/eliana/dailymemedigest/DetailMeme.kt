@@ -55,20 +55,26 @@ class DetailMeme : AppCompatActivity() {
             url,
             Response.Listener {
                 Log.d("apiresult", it)
-                val obj = JSONArray(it)
-                if(obj.getJSONObject(0).getString("result")=="success") {
-                    val data = obj.getJSONObject(0).getJSONArray("data").getJSONObject(0).getJSONArray("memes")
+                val obj = JSONObject(it)
+                if(obj.getString("result")=="success") {
+                    val data = obj.getJSONArray("data")
+                    Log.d("halo", data.toString())
                     for (i in 0 until data.length()) {
-                        val comen = data.getJSONObject(i)
-                        val c = Komentar(
-                            comen.getInt("id"),
-                            comen.getInt("id_meme"),
-                            comen.getInt("id_pengguna"),
-                            comen.getString("isi_komentar"),
-                            comen.getString("tanggal_komentar"),
+                        val dm = data.getJSONObject(i)
+                        val mm = Memes(
+                            dm.getInt("id"),
+                            dm.getString("url"),
+                            dm.getString("text_atas"),
+                            dm.getString("text_bawah"),
+                            dm.getString("tanggal"),
+                            dm.getInt("id_pembuat"),
+                            dm.getInt("jumlah_like")
                         )
-                        kk.add(c)
-                        updateList()
+                        Picasso.get().load(mm.url).into(imageMemeCard)
+                        txtTextAtasDetail.setText(mm.text_atas).toString()
+                        txtTextBawahDetail.setText(mm.text_bawah).toString()
+                        txtJumlahLikeCard.setText(mm.jumlah_like).toString()
+                        Log.d("detailhalo", mm.toString())
                     }
                 }
             },
